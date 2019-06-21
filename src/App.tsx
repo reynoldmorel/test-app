@@ -7,6 +7,7 @@ import { Giphy } from './model/entities/giphy.entity';
 import project from './project-configuration';
 import 'bootstrap/dist/css/bootstrap.css';
 import { SelectOption } from './components/filter-selector/filter-selector.component';
+import { Loading } from './components/loading/loading.component';
 
 interface AppState {
   giphies?: Giphy[];
@@ -15,6 +16,7 @@ interface AppState {
   showViewer?: boolean;
   imageIndex?: number;
   selectedOption?: SelectOption;
+  showLoading?: boolean;
 }
 
 class App extends Component<{}, AppState> {
@@ -31,7 +33,8 @@ class App extends Component<{}, AppState> {
       currentPage: 1,
       showViewer: false,
       imageIndex: 0,
-      selectedOption: project.config.GIPHY_RATING_FILTER_LIST[0]
+      selectedOption: project.config.GIPHY_RATING_FILTER_LIST[0],
+      showLoading: false
     }
 
     this.giphyService = new GiphyService();
@@ -105,6 +108,10 @@ class App extends Component<{}, AppState> {
   }
 
   private search(state?: AppState) {
+    this.setState({
+      showLoading: true
+    });
+
     this.giphyService.search(this.searchParameters).then(
       response => {
 
@@ -124,7 +131,8 @@ class App extends Component<{}, AppState> {
           totalGiphies: response.data.pagination.total_count,
           imageIndex,
           currentPage,
-          selectedOption: state.selectedOption || this.state.selectedOption
+          selectedOption: state.selectedOption || this.state.selectedOption,
+          showLoading: false
         });
       }
     ).catch(
@@ -141,7 +149,8 @@ class App extends Component<{}, AppState> {
   render() {
     if (this.state.giphies === undefined ||
       this.state.imageIndex === undefined ||
-      this.state.selectedOption === undefined)
+      this.state.selectedOption === undefined ||
+      this.state.showLoading === undefined)
       return (<div />);
 
     return (
@@ -179,6 +188,7 @@ class App extends Component<{}, AppState> {
             />
           </div>
         </div>
+        <Loading show={this.state.showLoading} />
       </div>
     );
   }

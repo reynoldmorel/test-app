@@ -27,3 +27,13 @@ html {
 .app-btn {
     padding: 5px !important;
 }
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
