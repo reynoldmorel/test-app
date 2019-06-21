@@ -149,7 +149,7 @@ class App extends Component<{}, AppState> {
         <div className="app-container">
           <header className="app-header">
             <h1>{project.config.APP_NAME}</h1>
-            <h2>By {project.config.COMPANY_NAME}</h2>
+            <span>By {project.config.COMPANY_NAME}</span>
           </header>
 
           <div>

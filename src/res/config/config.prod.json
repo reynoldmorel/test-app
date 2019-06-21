@@ -1,5 +1,5 @@
 {
-    "APP_NAME": "Giphy Search Engine",
+    "APP_NAME": "Giphy Search",
     "COMPANY_NAME": "Acme Software",
     "GIPHY_API_KEY": "smgIdd7DGnDbVFsuIMolOUwzAMO11Q7r",
     "GIPHY_REST_BASE_URL": "http://api.giphy.com",
