@@ -1,0 +1,7 @@
+.filter-section {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    margin: 40px 0px;
+}
